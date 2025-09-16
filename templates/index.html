@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Médico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Selecione os sintomas</h1>
+        <form method="POST" action="{{ url_for('diagnostico') }}">
+            <div class="checkbox-group">
+                {% for sintoma in sintomas %}
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="sintomas" value="{{ sintoma }}">
+                        {{ sintoma.replace("_", " ").capitalize() }}
+                    </label>
+                {% endfor %}
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>

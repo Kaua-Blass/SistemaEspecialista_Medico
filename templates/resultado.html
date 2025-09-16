@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado do Diagnóstico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado do Diagnóstico</h1>
+        
+        <h2>Sintomas selecionados:</h2>
+        <ul>
+            {% for sintoma in selecionados %}
+                <li>{{ sintoma.replace("_", " ").capitalize() }}</li>
+            {% endfor %}
+        </ul>
+
+        {% if possiveis %}
+            <h2>Possíveis Diagnósticos:</h2>
+            <ul>
+                {% for item in possiveis %}
+                    <li>
+                        <strong>{{ item.doenca }}</strong><br>
+                        (Correspondência: {{ item.porcentagem }}% - {{ item.sintomas_correspondentes|length }} de {{ regras[item.doenca]|length }} sintomas)
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ mensagem }}</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}">Voltar</a>
+    </div>
+</body>
+</html>
