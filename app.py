@@ -36,7 +36,6 @@ def diagnostico():
     else:
         mensagem = None
 
-    # CORREÇÃO AQUI: Adicionar 'regras=regras' para que o template HTML tenha acesso a ela.
     return render_template("resultado.html", 
                            selecionados=selecionados, 
                            possiveis=possiveis,
